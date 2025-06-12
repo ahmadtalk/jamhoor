@@ -15,6 +15,7 @@ const captionsSample = [
 function App() {
   const [audioUrl, setAudioUrl] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
+  const [title, setTitle] = useState("My Audio Caption");
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -41,11 +42,24 @@ function App() {
       <h1 className="text-3xl mb-4">🎧 Audio Caption Reel</h1>
 
       <input type="file" accept="audio/*" onChange={handleFileChange} className="mb-4" />
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Enter Title"
+        className="mb-4 p-2 rounded bg-gray-800 text-white border border-gray-600 w-full max-w-md"
+      />
 
       {audioUrl && (
-        <>
-          <audio ref={audioRef} controls src={audioUrl} className="mb-4 w-full max-w-md" />
-          <div className="text-xl text-center">
+        <div
+          className="relative bg-gray-900 rounded overflow-hidden shadow-lg"
+          style={{ width: '360px', height: '640px' }}
+        >
+          <div className="absolute top-0 left-0 w-full px-4 py-2 bg-black bg-opacity-60 text-center text-white text-xl font-bold">
+            {title}
+          </div>
+
+          <div className="absolute bottom-24 left-0 w-full text-center px-4 text-lg">
             {captionsSample.map((cap, idx) => (
               <span
                 key={idx}
@@ -59,7 +73,9 @@ function App() {
               </span>
             ))}
           </div>
-        </>
+
+          <audio ref={audioRef} controls src={audioUrl} className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-11/12" />
+        </div>
       )}
     </div>
   );
