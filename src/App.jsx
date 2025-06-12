@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
-import * as FFmpeg from '@ffmpeg/ffmpeg';
+import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg/dist/esm/index.js';
 import './App.css';
 
 function App() {
@@ -55,11 +55,11 @@ function App() {
 
     const canvas = await html2canvas(reelRef.current);
     canvas.toBlob(async (blob) => {
-      const ffmpeg = FFmpeg.createFFmpeg({ log: true });
+      const ffmpeg = createFFmpeg({ log: true });
       await ffmpeg.load();
 
-      ffmpeg.FS('writeFile', 'image.png', await FFmpeg.fetchFile(blob));
-      ffmpeg.FS('writeFile', 'audio.mp3', await FFmpeg.fetchFile(audioFile));
+      ffmpeg.FS('writeFile', 'image.png', await fetchFile(blob));
+      ffmpeg.FS('writeFile', 'audio.mp3', await fetchFile(audioFile));
 
       await ffmpeg.run(
         '-loop', '1',
