@@ -95,6 +95,13 @@ function App() {
         className="mb-4 p-2 rounded bg-gray-800 text-white border border-gray-600 w-full max-w-md"
       />
 
+      {!audioUrl && (
+        <div className="text-center text-gray-400">
+          <p className="mb-2">🎙️ الرجاء رفع ملف صوتي لبدء العرض</p>
+          <p>ثم أرفق ملف الترجمة (captions) بصيغة JSON</p>
+        </div>
+      )}
+
       {audioUrl && (
         <>
           <div
