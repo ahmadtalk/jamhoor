@@ -9,7 +9,7 @@ function App() {
   const [audioUrl, setAudioUrl] = useState(null);
   const [audioFile, setAudioFile] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
-  const [title, setTitle] = useState("My Audio Caption");
+  const [title, setTitle] = useState("jamhoor");
   const [captions, setCaptions] = useState([]);
   const audioRef = useRef(null);
   const reelRef = useRef(null);
