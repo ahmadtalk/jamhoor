@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
-import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg/dist/esm/index.js';
+import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 import './App.css';
 
 function App() {
